@@ -1,0 +1,45 @@
+[project]
+name = "ctxd"
+version = "0.1.0"
+description = "Local-first semantic code search daemon for AI coding assistants"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "lancedb>=0.3.0",
+    "sentence-transformers>=2.2.0",
+    "watchdog>=3.0.0",
+    "click>=8.0",
+    "tree-sitter>=0.20",
+    "tree-sitter-python>=0.20",
+    "tree-sitter-javascript>=0.20",
+    "tree-sitter-typescript>=0.20",
+    "tree-sitter-go>=0.20",
+    "pathspec>=0.11",
+    "pydantic>=2.0",
+    "rich>=13.0",
+    "torch>=2.0.0",
+    "pylance>=0.5.0",
+    "pandas>=2.0",
+    "tomli>=2.0.0; python_version < '3.11'",
+    "mcp>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-asyncio>=0.21",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ctxd*"]
+exclude = ["tests*", "context*", "agentfiles*"]
+
+[project.scripts]
+ctxd = "ctxd.cli:main"
+ctxd-mcp = "ctxd.mcp_server:main"
